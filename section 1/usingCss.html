@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>type of css</title>
+    <style>
+      h3 {
+        font-size: 30px;
+        color: blue;
+        text-decoration: underline;
+        text-align: center;
+      }
+      .myclass {
+        font-size: 20px;
+        color: rgb(123, 0, 255);
+        text-align: center !important;
+      }
+      #myid {
+        font-size: 20px;
+        color: rgb(123, 0, 255);
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .class1 {
+        font-size: 40px;
+        color: rgba(200, 255, 0, 0.592);
+        text-align: center;
+      }
+      .class2 {
+        font-size: 20px;
+        color: rgb(255, 0, 0);
+        text-align: center;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1 style="color: cadetblue; font-size: 50px">
+      inline css is used to apply css in individual tags only
+    </h1>
+    hello
+    <!-- hello -->
+    <h3>internal css is used to apply entire css on the page</h3>
+    <h3 class="myclass">
+      name selector is used to select elements by their tag name
+    </h3>
+    <p class="myclass">
+      class selector is used to slect elements by their class name
+    </p>
+    <p id="myid">ID selectors are used to slect elements by their id name</p>
+    id is unique
+
+    <p class="class1 class2">for same selector last property is overriden</p>
+
+    <h1 class="external">external file</h1>
+  </body>
+</html>
