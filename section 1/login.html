@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login_html</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family:  Montserrat; ;
+      }
+      .mycard {
+        width: 50vh;
+
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 10px 2px hsla(0, 0%, 0%, 0.518);
+        /*   x-oofset yoffset blur size color */
+        background-color: rgba(31, 220, 220, 0.152);
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(39, 150, 184, 0.427);
+      }
+
+      .myinput {
+        width: 100%;
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.445);
+        margin: 5px 5px 20px 5px;
+      }
+
+      .my-btn {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #2e8b57;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 5px;
+      }
+      .my-btn:hover {
+        background-color: #31894ad5;
+      }
+      .my-btn:focus {
+        outline: 3px solid #306bb9d5;
+      }
+      .form_title {
+        text-align: center;
+       
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mycard">
+      <h3 class="form_title">Login here</h3>
+      <form action="">
+        <label for="email">Email address</label>
+        <input type="email" class="myinput" placeholder="e.g. kriti@raj.com"/>
+
+        <label for="password">Password</label>
+        <input type="password" class="myinput" placeholder="e.g 11thcricketPartnership"/>
+
+        <button class="my-btn">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
