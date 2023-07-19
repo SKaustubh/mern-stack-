@@ -4,20 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login_html</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+      rel="stylesheet"
+    />
     <style>
       * {
         box-sizing: border-box;
-        font-family:  Montserrat; ;
-      }
-      .mycard {
-        width: 50vh;
-
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 3px 3px 10px 2px hsla(0, 0%, 0%, 0.518);
-        /*   x-oofset yoffset blur size color */
-        background-color: rgba(31, 220, 220, 0.152);
+        font-family: Montserrat;
       }
       body {
         display: flex;
@@ -25,6 +19,28 @@
         justify-content: center;
         align-items: center;
         background-color: rgba(39, 150, 184, 0.427);
+        /* background-image: linear-gradient(
+          rgba(199, 94, 159, 0.427),
+          rgba(100, 189, 216, 0.427)
+        ); */
+        background-image: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.408),
+            rgba(0, 0, 0, 0.426)
+          ),
+          url("https://assets.teenvogue.com/photos/59e22755a875a3564524a95c/16:9/w_2560%2Cc_limit/GettyImages-860938106.jpg");
+        background-size: cover;
+      }
+
+      .mycard {
+        width: 50vh;
+        width: 50vh;
+
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 10px 2px hsla(0, 0%, 0%, 0.518);
+        /*   x-oofset yoffset blur size color */
+        background-color: rgba(31, 220, 220, 0.152);
       }
 
       .myinput {
@@ -53,21 +69,31 @@
       }
       .form_title {
         text-align: center;
-       
+
         font-size: 30px;
         margin-bottom: 20px;
+      }
+      .logo {
+        width: 100px;
+        margin: auto;
+        display: block;
       }
     </style>
   </head>
   <body>
     <div class="mycard">
+      <img src="35142683-removebg-preview.png" alt="" class="logo" />
       <h3 class="form_title">Login here</h3>
       <form action="">
         <label for="email">Email address</label>
-        <input type="email" class="myinput" placeholder="e.g. kriti@raj.com"/>
+        <input type="email" class="myinput" placeholder="e.g. kriti@raj.com" />
 
         <label for="password">Password</label>
-        <input type="password" class="myinput" placeholder="e.g 11thcricketPartnership"/>
+        <input
+          type="password"
+          class="myinput"
+          placeholder="e.g 11thcricketPartnership"
+        />
 
         <button class="my-btn">Submit</button>
       </form>
