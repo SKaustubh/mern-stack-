@@ -1,0 +1,25 @@
+.myClass{
+    color:crimson;
+    font-size: 25px;
+}
+
+button{
+    background-color: crimson;
+    color: white;
+    width: 100px;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #ff0000;
+}
+
+.home-bg{
+    background-image: url('/public/sunset.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
