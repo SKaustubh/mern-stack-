@@ -23,3 +23,13 @@ button:hover{
     background-size: cover;
     background-attachment: fixed;
 }
+
+.nav-item .active{
+   border-bottom: 2px solid blueviolet;
+    color: blueviolet !important;
+    font-weight: bold;
+}
+
+.imgdiv{
+    width:25px;
+}
