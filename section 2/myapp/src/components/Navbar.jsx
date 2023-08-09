@@ -44,6 +44,11 @@ function Navbar() {
               EventHandling
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link "  to="/StateManagement">
+            StateManagement
+            </NavLink>
+          </li>
         </ul>
         <form className="d-flex" role="search">
           <input
