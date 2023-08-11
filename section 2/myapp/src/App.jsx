@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import NotFound from "./components/NotFound";
 import EventHandling from "./components/EventHandling";
 import StateManagement from "./components/StateManagement";
+import Todo from "./components/Todo";
 
 function App() {
   return (
@@ -18,9 +19,11 @@ function App() {
           <Route element={<Home />} path="/" />
 
           <Route element={<Login />} path="/Login" />
+         
           <Route element={<Signup />} path="/Signup" />
           <Route element={<EventHandling />} path="/EventHandling" />
           <Route element={<StateManagement />} path="/StateManagement" />
+          <Route element={<Todo />} path="/TodoList" />
           <Route element={<NotFound />} path="*" />
         </Routes>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function StateManagement() {
   const [likes, setLikes] = useState(0);
-  const [img, setimg] = useState(0)
+  const [img, setimg] = useState(0);
 
   return (
     <div>
@@ -29,11 +29,13 @@ function StateManagement() {
             reset
           </button>
         </div>
-        <input type="text" className="form-control" onChange={
-            (e) => {
-                setimg(e.target.value)
-            }
-        }/>
+        <input
+          type="text"
+          className="form-control"
+          onChange={(e) => {
+            setimg(e.target.value);
+          }}
+        />
         <img src={img} alt="" />
       </div>
     </div>
