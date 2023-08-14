@@ -14,6 +14,8 @@ const signUpForm = useFormik({
     },
     onSubmit: (values) => {
       console.log(values);
+
+      // send the data to the server
     }
 });
 
