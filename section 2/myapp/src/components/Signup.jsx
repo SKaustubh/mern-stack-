@@ -1,7 +1,23 @@
+import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 
 function Signup() {
+
+// initalise the formik
+
+const signUpForm = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    }
+});
+
+
   return (
     <section className="vh-75 bg-danger">
       <div className="container h-100 ">
@@ -17,12 +33,16 @@ function Signup() {
                     <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                       Sign up
                     </p>
-                    <form className="mx-1 mx-md-4">
+                    <form className="mx-1 mx-md-4" onSubmit={
+                        signUpForm.handleSubmit
+                    }>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0">
                           <input
                             type="text"
-                            id="form3Example1c"
+                           name="name"
+                           onChange={signUpForm.handleChange}
+                           value={signUpForm.values.name}
                             className="form-control"
                             placeholder="e.g.  King"
                           />
@@ -38,7 +58,9 @@ function Signup() {
                         <div className="form-outline flex-fill mb-0">
                           <input
                             type="email"
-                            id="form3Example3c"
+                            name="email"
+                           onChange={signUpForm.handleChange}
+                           value={signUpForm.values.email}
                             className="form-control"
                             placeholder="e.g.  king@example.com"
                           />
@@ -54,7 +76,9 @@ function Signup() {
                         <div className="form-outline flex-fill mb-0">
                           <input
                             type="password"
-                            id="form3Example4c"
+                            name="password"
+                            onChange={signUpForm.handleChange}
+                            value={signUpForm.values.password}
                             className="form-control"
                             placeholder="e.g. pasword234"
                           />
@@ -96,7 +120,7 @@ function Signup() {
                       </div>
                       <div className="d-flex justify-content-center align-content-center  mb-3 mb-lg-4">
                         <button
-                          type="button"
+                        type="submit"
                           className="btn btn-primary btn-lg w-100"
                         >
                           Register
