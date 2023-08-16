@@ -2,23 +2,44 @@ import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import * as Yup from "yup";
+
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(5, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Name is Required"),
+  email: Yup.string().email("Invalid email").required("Email is Required"),
+  password: Yup.string()
+    .min(8, "Too Short!")
+    .max(50, "Too Long!")
+  
+    .required("Password is Required"),
+});
+
 function Signup() {
+  // initalise the formik
 
-// initalise the formik
-
-const signUpForm = useFormik({
+  const signUpForm = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, { setSubmitting }) => {
+      setSubmitting(true);
+
+      setTimeout(() => {
+        console.log("Form is submitted ", values);
+        setSubmitting(false);
+      }, 3000);
+
       console.log(values);
 
       // send the data to the server
-    }
-});
-
+    },
+    validationSchema: SignupSchema,
+  });
 
   return (
     <section className="vh-75 bg-danger">
@@ -35,16 +56,20 @@ const signUpForm = useFormik({
                     <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                       Sign up
                     </p>
-                    <form className="mx-1 mx-md-4" onSubmit={
-                        signUpForm.handleSubmit
-                    }>
+                    <form
+                      className="mx-1 mx-md-4"
+                      onSubmit={signUpForm.handleSubmit}
+                    >
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0">
+                          <span style={{ fontsize: "0.8em", color: "skyblue" }}>
+                            {signUpForm.touched.name && signUpForm.errors.name}
+                          </span>
                           <input
                             type="text"
-                           name="name"
-                           onChange={signUpForm.handleChange}
-                           value={signUpForm.values.name}
+                            name="name"
+                            onChange={signUpForm.handleChange}
+                            value={signUpForm.values.name}
                             className="form-control"
                             placeholder="e.g.  King"
                           />
@@ -58,11 +83,15 @@ const signUpForm = useFormik({
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0">
+                          <span style={{ fontsize: "0.8em", color: "skyblue" }}>
+                            {signUpForm.touched.email &&
+                              signUpForm.errors.email}
+                          </span>
                           <input
                             type="email"
                             name="email"
-                           onChange={signUpForm.handleChange}
-                           value={signUpForm.values.email}
+                            onChange={signUpForm.handleChange}
+                            value={signUpForm.values.email}
                             className="form-control"
                             placeholder="e.g.  king@example.com"
                           />
@@ -76,6 +105,10 @@ const signUpForm = useFormik({
                       </div>
                       <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill mb-0">
+                          <span style={{ fontsize: "0.8em", color: "skyblue" }}>
+                            {signUpForm.touched.password &&
+                              signUpForm.errors.password}
+                          </span>
                           <input
                             type="password"
                             name="password"
@@ -122,10 +155,23 @@ const signUpForm = useFormik({
                       </div>
                       <div className="d-flex justify-content-center align-content-center  mb-3 mb-lg-4">
                         <button
-                        type="submit"
+                          disabled={signUpForm.isSubmitting}
+                          type="submit"
                           className="btn btn-primary btn-lg w-100"
                         >
-                          Register
+                          {signUpForm.isSubmitting ? (
+                            <>
+                              <span
+                                class="spinner-border spinner-border-sm"
+                                aria-hidden="true"
+                              ></span>
+                              <span class="visually-hidden" role="status">
+                                Loading...
+                              </span>
+                            </>
+                          ) : (
+                            "Submit"
+                          )}
                         </button>
                       </div>
                     </form>

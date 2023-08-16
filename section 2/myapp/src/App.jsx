@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound";
 import EventHandling from "./components/EventHandling";
 import StateManagement from "./components/StateManagement";
 import Todo from "./components/Todo";
+import Browse from "./components/Browse";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route element={<Home />} path="/" />
 
           <Route element={<Login />} path="/Login" />
+          <Route element={<Browse />} path="/Browse" />
          
           <Route element={<Signup />} path="/Signup" />
           <Route element={<EventHandling />} path="/EventHandling" />
