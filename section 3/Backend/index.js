@@ -1,38 +1,45 @@
-const express = require("express");
+// import express
+const express = require('express');
 
-const userRouter = require("./routers/userRouter");
-//initialize the express
+const userRouter = require('./routers/userRouter');
+const productRouter = require('./routers/productRouter');
+const cors = require('cors');
+
+// initialize express
 const app = express();
 const port = 5000;
 
-//middleware
+// middlewares
 app.use(express.json());
+app.use(cors(
+    {
+    origin: ['http://localhost:3000']
+    }
+));
 
-app.use("/user", userRouter);
-app.use("/getall", userRouter);
-app.use("/update", userRouter);
-app.use("/getbyid", userRouter);
-app.use("/getbyemail", userRouter);
+app.use( '/user', userRouter );
+app.use( '/product', productRouter );
 
-app.get("/", (req, res) => {
-  res.send("response from index");
+// routes
+app.get('/', (req, res) => {
+    res.send('response from index');
 });
 
-app.get("/home", (req, res) => {
-  res.send("response from home");
-});
-app.get("/add", (req, res) => {
-  res.send("response from add");
+app.get('/home', (req, res) => {
+    res.send('response from home');
 });
 
-app.get("/getal", (req, res) => {
-  res.send("response from getall");
+app.get('/add', (req, res) => {
+    res.send('response from add');
 });
-//home
+
+app.get('/getall', (req, res) => {
+    res.send('response from getall');
+});
+
+// home
 // add
-//getall
+// getall
 
 // starting the server
-app.listen(port, () => {
-  console.log("express server started");
-});
+app.listen( port, () => { console.log('express server started') } );
