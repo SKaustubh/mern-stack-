@@ -1,11 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import Swal from "sweetalert2";
 
-function Login() {
+const Login = () => {
+  const loginForm = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    onSubmit: async (values) => {
+      console.log(values);
+      const res = await fetch("http://localhost:5000/user/authenticate", {
+        method: "POST",
+        body: JSON.stringify(values), // in this we are converting js to json using stringify
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(res.status);
+
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Login successful",
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        sessionStorage.setItem('user',JSON.stringify(data));  // set the token in the session storage
 
 
+      } else if (res.status === 401) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      }
+    },
+  });
 
-  
   return (
     <section className="vh-100" style={{ backgroundColor: "yellow" }}>
       <div className="container py-5 h-100">
@@ -18,30 +55,29 @@ function Login() {
             />
           </div>
           <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form>
+            <form onSubmit={loginForm.handleSubmit}>
               {/* Email input */}
               <div className="form-outline mb-4">
                 <input
                   type="email"
-                  id="form1Example13"
+                  id="email"
+                  onChange={loginForm.handleChange}
                   className="form-control form-control-lg"
                   placeholder="e.g.  kriti@gmail.com"
                 />
-                <label className="form-label" >
-                  Email address
-                </label>
+                <label className="form-label">Email address</label>
               </div>
               {/* Password input */}
               <div className="form-outline mb-4">
                 <input
                   type="password"
-                  id="form1Example23"
+                  id="password"
+                  onChange={loginForm.handleChange}
+                  value={loginForm.values.password}
                   className="form-control form-control-lg"
                   placeholder="**********"
                 />
-                <label className="form-label" >
-                  Password
-                </label>
+                <label className="form-label">Password</label>
               </div>
               <div className="d-flex justify-content-left  align-items-center mb-4">
                 {/* Checkbox */}
@@ -76,7 +112,6 @@ function Login() {
                 to="/Login"
                 role="button"
               >
-               
                 Continue with Facebook
               </Link>
               <Link
@@ -85,16 +120,14 @@ function Login() {
                 to="/Login"
                 role="button"
               >
-              
                 Continue with Twitter
               </Link>
-             
             </form>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Login;
