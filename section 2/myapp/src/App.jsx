@@ -10,18 +10,24 @@ import EventHandling from "./components/EventHandling";
 import StateManagement from "./components/StateManagement";
 import Todo from "./components/Todo";
 import Browse from "./components/Browse";
+import { Toaster } from "react-hot-toast";
+import ManageUser from "./components/ManageUser";
 
 function App() {
   return (
     <div>
+
+      <Toaster position="top right"/>
+      
       <BrowserRouter>
+
         <Navbar />
         <Routes>
           <Route element={<Home />} path="/" />
 
           <Route element={<Login />} path="/Login" />
           <Route element={<Browse />} path="/Browse" />
-         
+         <Route element={<ManageUser />} path="/ManageUser" />
           <Route element={<Signup />} path="/Signup" />
           <Route element={<EventHandling />} path="/EventHandling" />
           <Route element={<StateManagement />} path="/StateManagement" />
