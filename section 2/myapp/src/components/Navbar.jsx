@@ -1,7 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import UseAppContext from "../AppContext";
 
-function Navbar() {
+const Navbar=() => {
+
+  const {loggedin} = UseAppContext();
+
+  const displayUserOption = () => {
+    if(loggedin) {
+      return <li className="nav-item">
+        <button className="btn btn-danger" >Logout</button>
+        </li>
+    }
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

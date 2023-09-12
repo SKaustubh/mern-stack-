@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
+import UseAppContext from "../AppContext";
 
 const Login = () => {
+
+const {setLoggedin} = UseAppContext();
+
   const loginForm = useFormik({
     initialValues: {
       email: "",
@@ -32,7 +36,8 @@ const Login = () => {
 
         sessionStorage.setItem('user',JSON.stringify(data));  // set the token in the session storage
 
-
+        setLoggedin(true);
+        
       } else if (res.status === 401) {
         Swal.fire({
           icon: "error",
