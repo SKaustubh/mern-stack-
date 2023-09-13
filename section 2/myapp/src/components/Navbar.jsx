@@ -76,6 +76,9 @@ const Navbar=() => {
               </NavLink>
             </li>
           </ul>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            {displayUserOption()}
+          </ul>
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"

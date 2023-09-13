@@ -68,6 +68,23 @@ const nav=useNavigate();
     validationSchema: SignupSchema,
   });
 
+
+  const uploadFile =async (e) => {
+    if (!e.target.files) return;
+
+    const file = e.target.files[0];
+    console.log(file);
+     
+    const fd=new FormData();
+    fd.append('myfile' ,file);
+
+    const res = await fetch('http://localhost:5000/utils/uploadfile',{
+      method:'POST',
+      body:fd
+    });
+   console.log(res.status);
+  }
+
   return (
     <section className="vh-75 bg-danger">
       <div className="container h-100 ">
