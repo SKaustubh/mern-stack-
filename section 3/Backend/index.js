@@ -22,6 +22,9 @@ app.use( '/user', userRouter );
 app.use( '/product', productRouter );
 app.use('/utils', utils)
 
+
+app.use(express.static('./uploads'));
+
 // routes
 app.get('/', (req, res) => {
     res.send('response from index');

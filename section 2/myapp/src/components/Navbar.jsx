@@ -1,18 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import UseAppContext from "../AppContext";
 
-const Navbar=() => {
+const Navbar = () => {
+  const { loggedin, logout } = UseAppContext();
 
-  const {loggedin} = UseAppContext();
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
 
   const displayUserOption = () => {
-    if(loggedin) {
-      return <li className="nav-item">
-        <button className="btn btn-danger" >Logout</button>
-        </li>
+    if (loggedin) {
+      return (
+        <>
+          <li className="nav-item">
+            <button className="btn btn-danger" onClick={logout}>
+              Logout
+            </button>
+          </li>
+          <li>
+            <img
+              height={50}
+              className="rounded-circle"
+              src={"http://localhost:5000/"+currentUser.avatar}
+              alt=""
+            />
+          </li>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <li className="nav-item">
+            <NavLink className="nav-link " to="/Login">
+              Login
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link " to="/Signup">
+              SignUp
+            </NavLink>
+          </li>
+        </>
+      );
     }
-  }
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -39,17 +71,7 @@ const Navbar=() => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/Login">
-                Login
-              </NavLink>
-            </li>
 
-            <li className="nav-item">
-              <NavLink className="nav-link " to="/Signup">
-                Signup
-              </NavLink>
-            </li>
             <li className="nav-item">
               <NavLink className="nav-link " to="/EventHandling">
                 EventHandling
@@ -79,21 +101,10 @@ const Navbar=() => {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             {displayUserOption()}
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

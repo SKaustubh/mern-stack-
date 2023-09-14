@@ -13,6 +13,7 @@ import Browse from "./components/Browse";
 import { Toaster } from "react-hot-toast";
 import ManageUser from "./components/ManageUser";
 import { AppProvider } from "./AppContext";
+import UserAuth from "./UserAuth";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
             <Route element={<Signup />} path="/Signup" />
             <Route element={<EventHandling />} path="/EventHandling" />
             <Route element={<StateManagement />} path="/StateManagement" />
-            <Route element={<Todo />} path="/TodoList" />
+            <Route element={<UserAuth><  Todo /></UserAuth>} path="/TodoList" />
             <Route element={<NotFound />} path="*" />
           </Routes>
         </AppProvider>

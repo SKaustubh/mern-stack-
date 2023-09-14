@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
-import React from "react";
-import { Link, useNavigate, } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import * as Yup from "yup";
@@ -17,9 +17,12 @@ const SignupSchema = Yup.object().shape({
 
     .required("Password is Required"),
 });
-const Signup=() =>{
+const Signup = () => {
   // initalise the formik
-const nav=useNavigate();
+
+  const nav = useNavigate();
+
+  const [selfile, setSelfile] = useState();
   const signUpForm = useFormik({
     initialValues: {
       name: "",
@@ -27,6 +30,7 @@ const nav=useNavigate();
       password: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
+     values.avatar = selfile;
       setSubmitting(true);
 
       setTimeout(() => {
@@ -47,43 +51,40 @@ const nav=useNavigate();
       });
 
       console.log(res.status);
-      if(res.status===200)
-      {
+      if (res.status === 200) {
         Swal.fire({
-          icon: 'success',
-          title: 'Nice',
-          text:'You have signed successfully'
-        })
-       nav('/')
-      }
-      
-      else{
+          icon: "success",
+          title: "Nice",
+          text: "You have signed successfully",
+        });
+        nav("/");
+      } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-        })
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
       }
-  },
+    },
     validationSchema: SignupSchema,
   });
 
-
-  const uploadFile =async (e) => {
+  const uploadFile = async (e) => {
     if (!e.target.files) return;
 
     const file = e.target.files[0];
     console.log(file);
-     
-    const fd=new FormData();
-    fd.append('myfile' ,file);
+    setSelfile(file.name);
 
-    const res = await fetch('http://localhost:5000/utils/uploadfile',{
-      method:'POST',
-      body:fd
+    const fd = new FormData();
+    fd.append("myfile", file);
+
+    const res = await fetch("http://localhost:5000/utils/uploadfile", {
+      method: "POST",
+      body: fd,
     });
-   console.log(res.status);
-  }
+    console.log(res.status);
+  };
 
   return (
     <section className="vh-75 bg-danger">
@@ -185,6 +186,8 @@ const nav=useNavigate();
                           </label>
                         </div>
                       </div>
+                      <input type="file" onChange={uploadFile} />
+
                       <div className="form-check d-flex  mb-5">
                         <input
                           className="form-check-input me-2 "
@@ -236,6 +239,6 @@ const nav=useNavigate();
       </div>
     </section>
   );
-}
+};
 
 export default Signup;

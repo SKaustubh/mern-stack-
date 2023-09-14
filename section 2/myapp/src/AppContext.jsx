@@ -19,7 +19,7 @@ const logout = () => {
 
     const [loggedin,setLoggedin]= useState(currentUser!==null);
 
-    return <AppContext.Provider value={{ loggedin ,setLoggedin }} >
+    return <AppContext.Provider value={{ loggedin ,setLoggedin ,logout}} >
     {children}
     </AppContext.Provider>
     
